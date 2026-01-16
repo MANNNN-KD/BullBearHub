@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    background: #0d0d0d;
+    color: white;
+    font-family: Arial;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: black;
+}
+
+.nav-links a {
+    color: #00ff95;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+}
+
+.btn {
+    background: #00ff95;
+    padding: 12px 25px;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.feature-box {
+    background: #111;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.chart-container {
+    padding: 30px;
+}
