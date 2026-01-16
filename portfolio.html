@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio - BullBearHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">BullBearHub</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="news.html">News</a>
+        <a href="portfolio.html">Portfolio</a>
+    </div>
+</nav>
+
+<h1 class="page-title">Your Portfolio</h1>
+
+<div class="portfolio-box">
+
+    <input type="text" id="symbol" placeholder="Symbol (BTC/ETH/NIFTY)">
+    <input type="number" id="buyPrice" placeholder="Buy Price">
+    <input type="number" id="sellPrice" placeholder="Sell Price">
+    <input type="number" id="qty" placeholder="Quantity">
+    <button onclick="calcPL()">Calculate P/L</button>
+
+    <div id="result" class="result-box">Enter trade to calculate...</div>
+</div>
+
+<script>
+function calcPL() {
+    let buy = parseFloat(document.getElementById("buyPrice").value);
+    let sell = parseFloat(document.getElementById("sellPrice").value);
+    let qty = parseFloat(document.getElementById("qty").value);
+
+    let pl = (sell - buy) * qty;
+    document.getElementById("result").innerHTML =
+        `<h2>P/L: $${pl.toFixed(2)}</h2>`;
+}
+</script>
+
+<script src="chatbot.js"></script>
+</body>
+</html>
