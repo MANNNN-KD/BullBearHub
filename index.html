@@ -3,178 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MarketX – Crypto & Stock Analysis</title>
+<title>BullBearHub – Live Market Dashboard</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<!-- Icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Poppins', sans-serif; background:#0d0d0d; color:white; }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-    /* HEADER */
-    header {
-        background: linear-gradient(135deg, #1d1d1d, #0066ff);
-        padding: 20px;
-        text-align:center;
-        font-size: 28px;
-        font-weight:700;
-        animation: fadeIn 1.2s ease-in-out;
+    body {
+        background: #0c0f17;
+        color: white;
+        overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    nav {
+        width: 100%;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #11141d;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid #222;
+    }
+
+    nav h1 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #4e9eff;
+    }
+
+    nav a {
+        margin-left: 20px;
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        color: #4e9eff;
     }
 
     /* HERO SECTION */
     .hero {
-        text-align:center;
-        padding:60px 20px;
-        animation: slideUp 1.5s ease;
-    }
-    .hero h1 { font-size:40px; font-weight:700; }
-    .hero p { font-size:18px; margin-top:10px; opacity:0.8; }
-    .btn {
-        margin-top:20px;
-        padding:12px 25px;
-        background:#0066ff;
-        border:none;
-        color:#fff;
-        border-radius:50px;
-        cursor:pointer;
-        font-size:16px;
-        transition:0.3s;
-    }
-    .btn:hover { background:#0044aa; transform:scale(1.05); }
-
-    /* SECTIONS */
-    section { padding:50px 20px; max-width:1100px; margin:auto; }
-    h2 { font-size:30px; margin-bottom:20px; text-align:center; }
-
-    /* CARDS */
-    .cards {
-        display:grid;
-        grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-        gap:20px;
-    }
-    .card {
-        background:#1a1a1a;
-        padding:25px;
-        border-radius:12px;
-        box-shadow:0 0 15px rgba(0,0,0,0.3);
-        transition:0.3s;
-        animation: fadeIn 1.4s ease;
-    }
-    .card:hover { transform:translateY(-7px); }
-
-    /* PORTFOLIO */
-    .portfolio img {
-        width:100%;
-        border-radius:12px;
-        margin-bottom:10px;
-        transition:0.3s;
-    }
-    .portfolio img:hover {
-        transform:scale(1.05);
-        box-shadow:0 0 15px #0066ff;
+        width: 100%;
+        padding: 100px 20px;
+        text-align: center;
+        animation: fadeIn 1.5s ease-out;
     }
 
-    /* CHATBOT */
-    .chatbot {
-        position:fixed;
-        bottom:20px;
-        right:20px;
-        background:#0066ff;
-        color:white;
-        padding:15px;
-        border-radius:50%;
-        width:60px;
-        height:60px;
-        cursor:pointer;
-        text-align:center;
-        font-size:28px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        animation:pulse 2s infinite;
+    .hero h2 {
+        font-size: 40px;
+        color: #4e9eff;
+        margin-bottom: 15px;
     }
 
-    /* FOOTER */
-    footer {
-        background:#121212;
-        text-align:center;
-        padding:20px;
-        margin-top:40px;
-        font-size:14px;
-        opacity:0.7;
+    .hero p {
+        font-size: 18px;
+        opacity: 0.8;
+        margin-bottom: 25px;
     }
 
-    /* ANIMATIONS */
-    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
-    @keyframes slideUp { from{transform:translateY(40px); opacity:0;} to{transform:translateY(0); opacity:1;} }
-    @keyframes pulse {
-        0% { transform:scale(1); }
-        50% { transform:scale(1.1); }
-        100% { transform:scale(1); }
+    .btn-primary {
+        background: #4e9eff;
+        padding: 12px 25px;
+        border-radius: 8px;
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background: #74b6ff;
+    }
+
+    /* ANIMATION */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     /* RESPONSIVE */
-    @media (max-width:768px){
-        .hero h1 { font-size:32px; }
+    @media (max-width: 600px) {
+        nav h1 { font-size: 20px; }
+        .hero h2 { font-size: 30px; }
     }
 </style>
 </head>
 
 <body>
 
-<header>MarketX – Live Crypto & Stock Analysis</header>
+<nav>
+    <h1>BullBearHub</h1>
+    <div>
+        <a href="#">Home</a>
+        <a href="#">Crypto</a>
+        <a href="#">Stocks</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Chatbot</a>
+    </div>
+</nav>
 
-<!-- HERO -->
 <section class="hero">
-    <h1>AI Powered Market Intelligence</h1>
-    <p>Get real-time crypto news, stock analysis, signals, charts & insights.</p>
-    <button class="btn">Start Analysis</button>
+    <h2>Welcome to BullBearHub</h2>
+    <p>Your all-in-one dashboard for Crypto, Stocks, AI analysis, Charts, and News.</p>
+    <a class="btn-primary" href="#">Explore Dashboard</a>
 </section>
-
-<!-- FEATURES -->
-<section>
-    <h2>📊 Live Market Features</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Live Crypto Prices</h3>
-            <p>Bitcoin, Ethereum, Solana, meme coins & more.</p>
-        </div>
-        <div class="card">
-            <h3>Stock Market Updates</h3>
-            <p>NSE, BSE, NASDAQ, S&P500 – all in one place.</p>
-        </div>
-        <div class="card">
-            <h3>Technical Indicators</h3>
-            <p>RSI · MACD · EMA · Breakouts · Trends</p>
-        </div>
-        <div class="card">
-            <h3>AI Predictions</h3>
-            <p>AI-based trend forecasting & alerts.</p>
-        </div>
-    </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section>
-    <h2>🎨 Portfolio Gallery</h2>
-    <div class="cards portfolio">
-        <img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367f" alt="Crypto">
-        <img src="https://images.unsplash.com/photo-1614028674026-a65e31bfd52e" alt="Stocks">
-        <img src="https://images.unsplash.com/photo-1559526323-cb109b2c4681" alt="Market">
-    </div>
-</section>
-
-<!-- CHATBOT ICON -->
-<div class="chatbot" onclick="alert('AI Chatbot Coming Soon!')">
-    🤖
-</div>
-
-<footer>© 2026 MarketX. All Rights Reserved.</footer>
 
 </body>
 </html>
-
