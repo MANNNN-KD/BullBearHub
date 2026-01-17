@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Dashboard – BullBearHub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .market-box {
+            width: 80%;
+            margin: auto;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 20px #00eaff55;
+        }
+
+        .crypto {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin: 15px 0;
+            border-bottom: 1px solid #00eaff44;
+            font-size: 20px;
+        }
+
+        .green { color: #00ff9d; }
+        .red { color: #ff4d6d; }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📈 Live Market Dashboard</h1>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="market.html">Market</a>
+        <a href="news.html">News</a>
+        <a href="scanner.html">Scanner</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="simulator.html">Simulator</a>
+    </nav>
+</header>
+
+<div class="market-box">
+    <h2 style="text-shadow:0 0 10px #00eaff;">Top Crypto Prices</h2>
+
+    <div id="prices"></div>
+</div>
+
+<script>
+const cryptos = ["bitcoin", "ethereum", "solana", "binancecoin"];
+
+async function loadPrices() {
+    let container = document.getElementById("prices");
+    container.innerHTML = "Loading...";
+
+    let url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${cryptos.join(",")}`;
+
+    try {
+        let data = await fetch(url).then(r => r.json());
+        container.innerHTML = "";
+
+        data.forEach(coin => {
+            let changeClass = coin.price_change_percentage_24h > 0 ? 'green' : 'red';
+
+            container.innerHTML += `
+                <div class="crypto">
+                    <b>${coin.name} (${coin.symbol.toUpperCase()})</b>
+                    <span>$${coin.current_price.toLocaleString()}</span>
+                    <span class="${changeClass}">
+                        ${coin.price_change_percentage_24h.toFixed(2)}%
+                    </span>
+                </div>
+            `;
+        });
+
+    } catch (err) {
+        container.innerHTML = "Error loading prices";
+    }
+}
+
+loadPrices();
+setInterval(loadPrices, 5000);
+</script>
+
+</body>
+</html>
