@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Market – BullBearHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>📈 Live Market Dashboard</h1>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="market.html">Market</a>
+        <a href="news.html">News</a>
+        <a href="scanner.html">Scanner</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="simulator.html">Simulator</a>
+    </nav>
+</header>
+
+<section class="market-container">
+    <h2>🔥 Live Crypto Prices</h2>
+    <p>Auto-updates every 5 seconds.</p>
+
+    <div class="ticker-box" id="btc">Loading BTC…</div>
+    <div class="ticker-box" id="eth">Loading ETH…</div>
+    <div class="ticker-box" id="sol">Loading SOL…</div>
+</section>
+
+<script>
+async function fetchPrice(symbol, elementId) {
+    try {
+        let url = `https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`;
+        let res = await fetch(url);
+        let data = await res.json();
+        document.getElementById(elementId).innerText =
+            `${symbol}: $${parseFloat(data.price).toFixed(2)}`;
+    } catch (err) {
+        document.getElementById(elementId).innerText = "Error loading price";
+    }
+}
+
+function updatePrices() {
+    fetchPrice("BTCUSDT", "btc");
+    fetchPrice("ETHUSDT", "eth");
+    fetchPrice("SOLUSDT", "sol");
+}
+
+updatePrices();
+setInterval(updatePrices, 5000);
+</script>
+
+</body>
+</html>
